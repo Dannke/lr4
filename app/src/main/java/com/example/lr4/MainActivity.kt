@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Сохраняем оригинальные фоны кнопок сразу после инициализации разметки
         originalButton1Bg = binding.button1.background
         originalButton2Bg = binding.button2.background
         originalButton3Bg = binding.button3.background
@@ -45,7 +44,6 @@ class MainActivity : AppCompatActivity() {
             binding.textView.text = "Ориентация: $orientation"
         }
 
-        // Переключение кастомного оформления по нажатию на тематическую кнопку
         binding.themedButton.setOnClickListener {
             toggleCustomTheme()
         }
@@ -60,14 +58,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Функция переключения пользовательского оформления
+    // Функция переключения темы
     private fun toggleCustomTheme() {
         if (!isCustomThemeApplied) {
-            // Применяем кастомное оформление, меняем только оттенок кнопок
             binding.root.setBackgroundColor(ContextCompat.getColor(this, R.color.primaryColor))
             binding.textView.setTextColor(ContextCompat.getColor(this, R.color.accentColor))
 
-            // Используем backgroundTintList, чтобы изменить только цвет кнопки, сохранив её drawable
             val tint = ContextCompat.getColor(this, R.color.accentColor)
             binding.button1.backgroundTintList = ColorStateList.valueOf(tint)
             binding.button2.backgroundTintList = ColorStateList.valueOf(tint)
@@ -76,7 +72,6 @@ class MainActivity : AppCompatActivity() {
             binding.button5.backgroundTintList = ColorStateList.valueOf(tint)
             binding.button6.backgroundTintList = ColorStateList.valueOf(tint)
 
-            // Для тематической кнопки тоже можно изменить текст, оставив фон через стиль
             binding.themedButton.text = "Сбросить тему"
             isCustomThemeApplied = true
         } else {
@@ -84,7 +79,6 @@ class MainActivity : AppCompatActivity() {
             binding.root.setBackgroundColor(ContextCompat.getColor(this, android.R.color.white))
             binding.textView.setTextColor(ContextCompat.getColor(this, android.R.color.black))
 
-            // Убираем tint, чтобы кнопки вернулись к стандартному оформлению (определяемому темой)
             binding.button1.backgroundTintList = null
             binding.button2.backgroundTintList = null
             binding.button3.backgroundTintList = null
